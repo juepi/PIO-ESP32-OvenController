@@ -25,7 +25,7 @@
 #ifdef SLEEP_UNTIL
 const int SubscribedTopicCnt = 3; // Overall amount of topics to subscribe to
 #else
-const int SubscribedTopicCnt = 2; // Overall amount of topics to subscribe to
+const int SubscribedTopicCnt = 3; // Overall amount of topics to subscribe to
 #endif
 
 MqttSubCfg MqttSubscriptions[SubscribedTopicCnt]={
@@ -33,5 +33,6 @@ MqttSubCfg MqttSubscriptions[SubscribedTopicCnt]={
     {.Topic = sleep_until_topic, .Type = 3, .Subscribed = false, .MsgRcvd = 0, .TimePtr = &SleepUntilEpoch },
 #endif
     {.Topic = ota_topic, .Type = 0, .Subscribed = false, .MsgRcvd = 0, .BoolPtr = &OTAupdate },
-    {.Topic = otaInProgress_topic, .Type = 0, .Subscribed = false, .MsgRcvd = 0, .BoolPtr = &OtaInProgress }
+    {.Topic = otaInProgress_topic, .Type = 0, .Subscribed = false, .MsgRcvd = 0, .BoolPtr = &OtaInProgress },
+    {.Topic = OvenState_topic, .Type = 0, .Subscribed = false, .MsgRcvd = 0, .BoolPtr = &OvenState }
 };

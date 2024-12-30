@@ -16,3 +16,7 @@ The GPIO used to trigger your SSR can be configured in the `user-config.h` file 
 
 ### v1.0.0
 - initial commit
+
+### v1.0.1
+- Bugfix: forgot to subscribe to `OvenState_topic`
+- optimized some template settings and removed unneccessary stuff
