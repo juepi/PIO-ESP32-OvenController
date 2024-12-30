@@ -19,4 +19,5 @@ The GPIO used to trigger your SSR can be configured in the `user-config.h` file 
 
 ### v1.0.1
 - Bugfix: forgot to subscribe to `OvenState_topic`
-- optimized some template settings and removed unneccessary stuff
+- optimized some template settings and removed unnecessary stuff
+- Increase CPU frequency to 160MHz (possible ESP resets with 80MHz)
