@@ -21,3 +21,12 @@ The GPIO used to trigger your SSR can be configured in the `user-config.h` file 
 - Bugfix: forgot to subscribe to `OvenState_topic`
 - optimized some template settings and removed unnecessary stuff
 - Increase CPU frequency to 160MHz (possible ESP resets with 80MHz)
+
+### v1.0.2
+- Added Reboot button in WebUI to trigger ESP restart (Note: Uptime must be > 10s to trigger restart)
+- Added `NetState` to WebUI System Status (debugging MQTT connectivity problems)
+
+### v1.0.3
+- Updated to [PIO-ESP32-Template](https://github.com/juepi/PIO-ESP32-Template) v1.4.0 resolving possible endless loops when (re-)connecting to MQTT broker
+- Removed `NetState` from WebUI
+- Subscribe to topics with QoS 1 (instead of 0)

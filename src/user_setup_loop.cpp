@@ -14,7 +14,7 @@ const char *index_html PROGMEM = R"(
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Oven Controller</title>
+    <title>Oven Controller v%TEMPL_VERSION%</title>
 </head>
 <body>
     <h3>System Status</h3>
@@ -22,6 +22,9 @@ const char *index_html PROGMEM = R"(
 <b>WiFi RSSI:</b> %TEMPL_WIFI_RSSI% dBm<br>
 <b>MQTT:</b> %TEMPL_MQTT_STAT%<br>
 <b>Uptime:</b> %TEMPL_UPTIME%<br>
+<form action="/get" method="get">
+    <input type="submit" name="action" value="Reboot" />
+</form>
 </p>
     <h3>Oven Status</h3>
 <p>
@@ -64,6 +67,12 @@ void user_setup()
         //Webclient requested to turn oven off
         mqttClt.publish(OvenState_topic, String("off").c_str(), true);
         OvenState = false;
+      } else if (message == "Reboot")
+      {
+        if (UptimeSeconds > 10)
+        {
+          ESP.restart();
+        }
       }
     }
     request->redirect("/"); });
@@ -110,6 +119,8 @@ void notFound(AsyncWebServerRequest *request)
 //
 String processor(const String &var)
 {
+  if (var == "TEMPL_VERSION")
+    return (String(FIRMWARE_VERSION));
   if (var == "TEMPL_WIFI_RSSI")
     return (String(WiFi.RSSI()));
   if (var == "TEMPL_UPTIME")
